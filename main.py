@@ -45,12 +45,11 @@ def get_count():
     return (next - today).days
 
 def get_ymqcount():
-    global les
     next = datetime.strptime(str(date.today().year) + "-" + ymq_date, "%Y-%m-%d")
     if next < datetime.now():
         les = (today-next).days
-    if les < 7:
-        return "姨妈期第" + les.__str__() + "天"
+        if les < 7:
+            return "姨妈期第" + les.__str__() + "天"
     else:
         return "距离姨妈期开始还有" + ((next.replace(month=next.month+1)-today).days+7).__str__() + "天"
 
