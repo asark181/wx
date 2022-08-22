@@ -91,7 +91,7 @@ data = {"yy": {"value": yy},
         "minTemperature": {"value": minTemperature},
         "maxTemperature": {"value": maxTemperature},
         "love_days": {"value": get_count()},
-        "ymq": {"value": get_count()},
+        "ymq": {"value": get_ymqcount()},
         "birthday_left1": {"value": get_birthday1()},
         "birthday_left2": {"value": get_birthday2()},
         "words": {"value": get_words(), "color": get_random_color()}}
