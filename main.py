@@ -49,13 +49,17 @@ def get_day():
     return xq, yy, mm, dd
 
 
-def get_count():
+def get_djs():
     #delta = today - datetime.strptime(start_date, "%Y-%m-%d")
     #return delta.days
     next = datetime.strptime(str(date.today().year) + "-" + start_date, "%Y-%m-%d")
     if next < datetime.now():
         next = next.replace(year=next.year + 1)
     return (next - today).days
+
+def get_count():
+    delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+    return delta.days
 
 def get_ymqcount():
     next = datetime.strptime(str(date.today().year) + "-" + ymq_date, "%Y-%m-%d")
@@ -106,11 +110,13 @@ data1 = {"yy": {"value": yy},
         "temperature": {"value": temperature1},
         "minTemperature": {"value": minTemperature1},
         "maxTemperature": {"value": maxTemperature1},
+        "djs": {"value": get_djs()},
         "love_days": {"value": get_count()},
         "ymq": {"value": get_ymqcount()},
         "birthday_left1": {"value": get_birthday1()},
         "birthday_left2": {"value": get_birthday2()},
         "words": {"value": get_words(), "color": get_random_color()}}
+        
 data2 = {"yy": {"value": yy},
         "mm": {"value": mm},
         "dd": {"value": dd},
@@ -120,6 +126,7 @@ data2 = {"yy": {"value": yy},
         "temperature": {"value": temperature2},
         "minTemperature": {"value": minTemperature2},
         "maxTemperature": {"value": maxTemperature2},
+        "djs": {"value": get_djs()},
         "love_days": {"value": get_count()},
         "ymq": {"value": get_ymqcount()},
         "birthday_left1": {"value": get_birthday1()},
