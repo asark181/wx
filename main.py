@@ -9,7 +9,8 @@ import random
 today = datetime.now()
 start_date = os.environ['START_DATE']
 ymq_date = os.environ['YMQ_DATE']
-city = os.environ['CITY']
+city1 = os.environ['CITY1']
+city2 = os.environ['CITY2']
 birthday1 = os.environ['BIRTHDAY1']
 birthday2 = os.environ['BIRTHDAY2']
 
@@ -84,11 +85,11 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 xq, yy, mm, dd = get_day()
 wea, temperature, minTemperature, maxTemperature = get_weather()
-data = {"yy": {"value": yy},
+data1 = {"yy": {"value": yy},
         "mm": {"value": mm},
         "dd": {"value": dd},
         "xq": {"value": xq},
-        "city": {"value": city},
+        "city": {"value": city1},
         "weather": {"value": wea},
         "temperature": {"value": temperature},
         "minTemperature": {"value": minTemperature},
@@ -98,7 +99,21 @@ data = {"yy": {"value": yy},
         "birthday_left1": {"value": get_birthday1()},
         "birthday_left2": {"value": get_birthday2()},
         "words": {"value": get_words(), "color": get_random_color()}}
-res1 = wm.send_template(user_id1, template_id, data)
-res2 = wm.send_template(user_id2, template_id, data)
+data2 = {"yy": {"value": yy},
+        "mm": {"value": mm},
+        "dd": {"value": dd},
+        "xq": {"value": xq},
+        "city": {"value": city2},
+        "weather": {"value": wea},
+        "temperature": {"value": temperature},
+        "minTemperature": {"value": minTemperature},
+        "maxTemperature": {"value": maxTemperature},
+        "love_days": {"value": get_count()},
+        "ymq": {"value": get_ymqcount()},
+        "birthday_left1": {"value": get_birthday1()},
+        "birthday_left2": {"value": get_birthday2()},
+        "words": {"value": get_words(), "color": get_random_color()}}
+res1 = wm.send_template(user_id1, template_id, data1)
+res2 = wm.send_template(user_id2, template_id, data2)
 print(res1)
 print(res2)
