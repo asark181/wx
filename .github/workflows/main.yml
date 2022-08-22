@@ -32,4 +32,5 @@ jobs:
       YMQ_DATE: ${{ secrets.YMQ_DATE }}
       BIRTHDAY1: ${{ secrets.BIRTHDAY1 }}
       BIRTHDAY2: ${{ secrets.BIRTHDAY2 }}
-      CITY: ${{ secrets.CITY }}
+      CITY1: ${{ secrets.CITY1 }}
+      CITY2: ${{ secrets.CITY2 }}
