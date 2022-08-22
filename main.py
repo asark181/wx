@@ -49,9 +49,9 @@ def get_ymqcount():
     if next < datetime.now():
         les = (today-next).days
     if les < 7:
-        return les
+        return "姨妈期第" + les.__str__() + "天"
     else:
-        return (next.replace(month=next.month+1)-today).days
+        return "距离姨妈期开始还有" + ((next.replace(month=next.month+1)-today).days+7).__str__() + "天"
 
 def get_birthday1():
     next = datetime.strptime(str(date.today().year) + "-" + birthday1, "%Y-%m-%d")
