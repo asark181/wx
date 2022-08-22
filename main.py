@@ -22,8 +22,19 @@ user_id2 = os.environ["USER_ID2"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
-def get_weather():
-    url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+def get_weather1():
+    url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city1
+    res = requests.get(url).json()
+    weather = res['data']['list'][0]
+    return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
+def get_weather1():
+    url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city1
+    res = requests.get(url).json()
+    weather = res['data']['list'][0]
+    return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
+
+def get_weather2():
+    url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city2
     res = requests.get(url).json()
     weather = res['data']['list'][0]
     return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
@@ -84,16 +95,17 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 xq, yy, mm, dd = get_day()
-wea, temperature, minTemperature, maxTemperature = get_weather()
+wea1, temperature1, minTemperature1, maxTemperature1 = get_weather1()
+wea2, temperature2, minTemperature2, maxTemperature2 = get_weather2()
 data1 = {"yy": {"value": yy},
         "mm": {"value": mm},
         "dd": {"value": dd},
         "xq": {"value": xq},
         "city": {"value": city1},
-        "weather": {"value": wea},
-        "temperature": {"value": temperature},
-        "minTemperature": {"value": minTemperature},
-        "maxTemperature": {"value": maxTemperature},
+        "weather": {"value": wea1},
+        "temperature": {"value": temperature1},
+        "minTemperature": {"value": minTemperature1},
+        "maxTemperature": {"value": maxTemperature1},
         "love_days": {"value": get_count()},
         "ymq": {"value": get_ymqcount()},
         "birthday_left1": {"value": get_birthday1()},
@@ -104,10 +116,10 @@ data2 = {"yy": {"value": yy},
         "dd": {"value": dd},
         "xq": {"value": xq},
         "city": {"value": city2},
-        "weather": {"value": wea},
-        "temperature": {"value": temperature},
-        "minTemperature": {"value": minTemperature},
-        "maxTemperature": {"value": maxTemperature},
+        "weather": {"value": wea2},
+        "temperature": {"value": temperature2},
+        "minTemperature": {"value": minTemperature2},
+        "maxTemperature": {"value": maxTemperature2},
         "love_days": {"value": get_count()},
         "ymq": {"value": get_ymqcount()},
         "birthday_left1": {"value": get_birthday1()},
