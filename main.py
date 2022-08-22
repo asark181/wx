@@ -16,7 +16,8 @@ birthday2 = os.environ['BIRTHDAY2']
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
-user_id = os.environ["USER_ID"]
+user_id1 = os.environ["USER_ID1"]
+user_id2 = os.environ["USER_ID2"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
@@ -97,5 +98,7 @@ data = {"yy": {"value": yy},
         "birthday_left1": {"value": get_birthday1()},
         "birthday_left2": {"value": get_birthday2()},
         "words": {"value": get_words(), "color": get_random_color()}}
-res = wm.send_template(user_id, template_id, data)
-print(res)
+res1 = wm.send_template(user_id1, template_id, data)
+res2 = wm.send_template(user_id2, template_id, data)
+print(res1)
+print(res2)
