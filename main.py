@@ -45,6 +45,7 @@ def get_count():
     return (next - today).days
 
 def get_ymqcount():
+    global les
     next = datetime.strptime(str(date.today().year) + "-" + ymq_date, "%Y-%m-%d")
     if next < datetime.now():
         les = (today-next).days
