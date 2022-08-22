@@ -8,6 +8,7 @@ import random
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
+love_date = os.environ['LOVE_DATE']
 ymq_date = os.environ['YMQ_DATE']
 city1 = os.environ['CITY1']
 city2 = os.environ['CITY2']
@@ -58,7 +59,7 @@ def get_djs():
     return (next - today).days
 
 def get_count():
-    delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+    delta = today - datetime.strptime(love_date, "%Y-%m-%d")
     return delta.days
 
 def get_ymqcount():
@@ -116,7 +117,7 @@ data1 = {"yy": {"value": yy},
         "birthday_left1": {"value": get_birthday1()},
         "birthday_left2": {"value": get_birthday2()},
         "words": {"value": get_words(), "color": get_random_color()}}
-        
+
 data2 = {"yy": {"value": yy},
         "mm": {"value": mm},
         "dd": {"value": dd},
