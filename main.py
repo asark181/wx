@@ -139,37 +139,37 @@ def get_weather_color2():
 
 def get_t_color1():
     if temperature1.__int__() <=30:
-        return "#00FFFF"
+        return "#0066FF"
     else:
         return "#FF5511"
 
 def get_mint_color1():
     if minTemperature1.__int__() <=30:
-        return "#00FFFF"
+        return "#0066FF"
     else:
         return "#FF5511"
 
 def get_maxt_color1():
     if maxTemperature1.__int__() <=30:
-        return "#00FFFF"
+        return "#0066FF"
     else:
         return "#FF5511"
 
 def get_t_color2():
     if temperature2.__int__() <=30:
-        return "#00FFFF"
+        return "#0066FF"
     else:
         return "#FF5511"
 
 def get_mint_color2():
     if minTemperature2.__int__() <=30:
-        return "#00FFFF"
+        return "#0066FF"
     else:
         return "#FF5511"
 
 def get_maxt_color2():
     if maxTemperature2.__int__() <=30:
-        return "#00FFFF"
+        return "#0066FF"
     else:
         return "#FF5511"
 
