@@ -137,6 +137,41 @@ def get_weather_color2():
     else:
         return "#FFFF00"
 
+def get_t_color1():
+    if temperature1.__int__() <=30:
+        return "#00FFFF"
+    else:
+        return "#FF5511"
+
+def get_mint_color1():
+    if minTemperature1.__int__() <=30:
+        return "#00FFFF"
+    else:
+        return "#FF5511"
+
+def get_maxt_color1():
+    if maxTemperature1.__int__() <=30:
+        return "#00FFFF"
+    else:
+        return "#FF5511"
+
+def get_t_color2():
+    if temperature2.__int__() <=30:
+        return "#00FFFF"
+    else:
+        return "#FF5511"
+
+def get_mint_color2():
+    if minTemperature2.__int__() <=30:
+        return "#00FFFF"
+    else:
+        return "#FF5511"
+
+def get_maxt_color2():
+    if maxTemperature2.__int__() <=30:
+        return "#00FFFF"
+    else:
+        return "#FF5511"
 
 data1 = {"yy": {"value": yy},
          "mm": {"value": mm},
@@ -144,9 +179,9 @@ data1 = {"yy": {"value": yy},
          "xq": {"value": xq},
          "city": {"value": city1},
          "weather": {"value": wea1, "color": get_weather_color1()},
-         "temperature": {"value": temperature1},
-         "minTemperature": {"value": minTemperature1},
-         "maxTemperature": {"value": maxTemperature1},
+         "temperature": {"value": temperature1, "color": get_t_color1()},
+         "minTemperature": {"value": minTemperature1, "color": get_mint_color1()},
+         "maxTemperature": {"value": maxTemperature1, "color": get_maxt_color1()},
          "djs": {"value": get_djs()},
          "love_days": {"value": get_count(), "color": "#FF33FF"},
          "ymq": {"value": get_ymqcount(), "color": "#FF0000"},
@@ -160,9 +195,9 @@ data2 = {"yy": {"value": yy},
          "xq": {"value": xq},
          "city": {"value": city2},
          "weather": {"value": wea2, "color": get_weather_color2()},
-         "temperature": {"value": temperature2},
-         "minTemperature": {"value": minTemperature2},
-         "maxTemperature": {"value": maxTemperature2},
+         "temperature": {"value": temperature2, "color": get_t_color2()},
+         "minTemperature": {"value": minTemperature2, "color": get_mint_color2()},
+         "maxTemperature": {"value": maxTemperature2, "color": get_maxt_color2()},
          "djs": {"value": get_djs()},
          "love_days": {"value": get_count(), "color": "#FF33FF"},
          "ymq": {"value": get_ymqcount(), "color": "#FF0000"},
