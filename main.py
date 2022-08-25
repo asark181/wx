@@ -28,17 +28,21 @@ def get_weather1():
     res = requests.get(url).json()
     weather = res['data']['list'][0]
     return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
+
+
 def get_weather1():
     url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city1
     res = requests.get(url).json()
     weather = res['data']['list'][0]
     return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
 
+
 def get_weather2():
     url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city2
     res = requests.get(url).json()
     weather = res['data']['list'][0]
     return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
+
 
 def get_day():
     week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
@@ -51,27 +55,30 @@ def get_day():
 
 
 def get_djs():
-    #delta = today - datetime.strptime(start_date, "%Y-%m-%d")
-    #return delta.days
+    # delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+    # return delta.days
     next = datetime.strptime(str(date.today().year) + "-" + start_date, "%Y-%m-%d")
     if next < datetime.now():
         next = next.replace(year=next.year + 1)
     return (next - today).days
 
+
 def get_count():
     delta = today - datetime.strptime(love_date, "%Y-%m-%d")
     return delta.days
 
+
 def get_ymqcount():
     next = datetime.strptime(str(date.today().year) + "-" + ymq_date, "%Y-%m-%d")
     if next < datetime.now():
-        les = (today-next).days+1
+        les = (today - next).days + 1
         if les < 7:
             return "姨妈期第" + les.__str__() + "天"
         else:
-            return "距离姨妈期开始还有" + ((next.replace(month=next.month+1)-today).days+7).__str__() + "天"
+            return "距离姨妈期开始还有" + ((next.replace(month=next.month + 1) - today).days + 7).__str__() + "天"
     else:
-        return "距离姨妈期开始还有" + ((next - today).days+1).__str__() + "天"
+        return "距离姨妈期开始还有" + ((next - today).days + 1).__str__() + "天"
+
 
 def get_birthday1():
     next = datetime.strptime(str(date.today().year) + "-" + birthday1, "%Y-%m-%d")
@@ -79,11 +86,13 @@ def get_birthday1():
         next = next.replace(year=next.year + 1)
     return (next - today).days
 
+
 def get_birthday2():
     next = datetime.strptime(str(date.today().year) + "-" + birthday2, "%Y-%m-%d")
     if next < datetime.now():
         next = next.replace(year=next.year + 1)
     return (next - today).days
+
 
 def get_words():
     words = requests.get("https://api.shadiao.pro/chp")
@@ -102,37 +111,64 @@ wm = WeChatMessage(client)
 xq, yy, mm, dd = get_day()
 wea1, temperature1, minTemperature1, maxTemperature1 = get_weather1()
 wea2, temperature2, minTemperature2, maxTemperature2 = get_weather2()
+
+
+def get_weather_color1():
+    if wea1 == "晴":
+        return "#FFCC66"
+    if wea1 == "多云":
+        return "#CCCCCC"
+    if wea1 == "阴":
+        return "#777777"
+    if wea1 == "小雨" or wea1 == "大雨" or wea1 == "中雨":
+        return "#33CCFF"
+    else:
+        return "#FFFF00"
+
+def get_weather_color2():
+    if wea2 == "晴":
+        return "#FFCC66"
+    if wea2 == "多云":
+        return "#CCCCCC"
+    if wea2 == "阴":
+        return "#777777"
+    if wea2 == "小雨" or wea2 == "大雨" or wea2 == "中雨":
+        return "#33CCFF"
+    else:
+        return "#FFFF00"
+
+
 data1 = {"yy": {"value": yy},
-        "mm": {"value": mm},
-        "dd": {"value": dd},
-        "xq": {"value": xq},
-        "city": {"value": city1},
-        "weather": {"value": wea1},
-        "temperature": {"value": temperature1},
-        "minTemperature": {"value": minTemperature1},
-        "maxTemperature": {"value": maxTemperature1},
-        "djs": {"value": get_djs()},
-        "love_days": {"value": get_count()},
-        "ymq": {"value": get_ymqcount()},
-        "birthday_left1": {"value": get_birthday1()},
-        "birthday_left2": {"value": get_birthday2()},
-        "words": {"value": get_words(), "color": get_random_color()}}
+         "mm": {"value": mm},
+         "dd": {"value": dd},
+         "xq": {"value": xq},
+         "city": {"value": city1},
+         "weather": {"value": wea1, "color": get_weather_color1()},
+         "temperature": {"value": temperature1},
+         "minTemperature": {"value": minTemperature1},
+         "maxTemperature": {"value": maxTemperature1},
+         "djs": {"value": get_djs()},
+         "love_days": {"value": get_count(), "color": "#FF33FF"},
+         "ymq": {"value": get_ymqcount(), "color": "#FF0000"},
+         "birthday_left1": {"value": get_birthday1()},
+         "birthday_left2": {"value": get_birthday2()},
+         "words": {"value": get_words(), "color": get_random_color()}}
 
 data2 = {"yy": {"value": yy},
-        "mm": {"value": mm},
-        "dd": {"value": dd},
-        "xq": {"value": xq},
-        "city": {"value": city2},
-        "weather": {"value": wea2},
-        "temperature": {"value": temperature2},
-        "minTemperature": {"value": minTemperature2},
-        "maxTemperature": {"value": maxTemperature2},
-        "djs": {"value": get_djs()},
-        "love_days": {"value": get_count()},
-        "ymq": {"value": get_ymqcount()},
-        "birthday_left1": {"value": get_birthday1()},
-        "birthday_left2": {"value": get_birthday2()},
-        "words": {"value": get_words(), "color": get_random_color()}}
+         "mm": {"value": mm},
+         "dd": {"value": dd},
+         "xq": {"value": xq},
+         "city": {"value": city2},
+         "weather": {"value": wea2, "color": get_weather_color2()},
+         "temperature": {"value": temperature2},
+         "minTemperature": {"value": minTemperature2},
+         "maxTemperature": {"value": maxTemperature2},
+         "djs": {"value": get_djs()},
+         "love_days": {"value": get_count(), "color": "#FF33FF"},
+         "ymq": {"value": get_ymqcount(), "color": "#FF0000"},
+         "birthday_left1": {"value": get_birthday1()},
+         "birthday_left2": {"value": get_birthday2()},
+         "words": {"value": get_words(), "color": get_random_color()}}
 res1 = wm.send_template(user_id1, template_id, data1)
 res2 = wm.send_template(user_id2, template_id, data2)
 print(res1)
