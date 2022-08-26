@@ -42,11 +42,11 @@ def get_weather1():
 def get_xz(xz):
     url = "http://web.juhe.cn/constellation/getAll?consName=" + xz + "&type=today&key=" + key
     res = requests.get(url).json()
-    return res['color'], res['health'], res['work'], res['money'], res['number'], res['summary'], res['all']
+    return res['color'], res['health'], res['work'], res['money'], res['number'], res['summary'], res['all'], res['name']
 
 
-lc, lh, lw, lm, ln, ls, la = get_xz("水瓶座")
-rc, rh, rw, rm, rn, rs, ra = get_xz("天蝎座")
+lc, lh, lw, lm, ln, ls, la, lna = get_xz("水瓶座")
+rc, rh, rw, rm, rn, rs, ra, rna = get_xz("天蝎座")
 
 
 def get_weather2():
@@ -84,7 +84,7 @@ def get_ymqcount():
     next = datetime.strptime(str(date.today().year) + "-" + ymq_date, "%Y-%m-%d")
     if next < datetime.now():
         les = (today - next).days + 1
-        if les < 7:
+        if les <= 7:
             return "姨妈期第" + les.__str__() + "天"
         else:
             return "距离姨妈期开始还有" + ((next.replace(month=next.month + 1) - today).days + 7).__str__() + "天"
@@ -214,6 +214,7 @@ data1 = {"yy": {"value": yy},
          "a": {"value": ra, "color": "#B94FFF"},
          "n": {"value": rn, "color": "#B94FFF"},
          "s": {"value": rs, "color": "#AA7700"},
+         "na": {"value": rs},
          "words": {"value": get_words(), "color": get_random_color()}}
 
 data2 = {"yy": {"value": yy},
@@ -237,6 +238,7 @@ data2 = {"yy": {"value": yy},
          "a": {"value": la, "color": "#B94FFF"},
          "n": {"value": ln, "color": "#B94FFF"},
          "s": {"value": ls, "color": "#AA7700"},
+         "na": {"value": ls},
          "words": {"value": get_words(), "color": get_random_color()}}
 res1 = wm.send_template(user_id1, template_id, data1)
 res2 = wm.send_template(user_id2, template_id, data2)
