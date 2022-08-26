@@ -214,7 +214,7 @@ data1 = {"yy": {"value": yy},
          "a": {"value": ra, "color": "#B94FFF"},
          "n": {"value": rn, "color": "#B94FFF"},
          "s": {"value": rs, "color": "#AA7700"},
-         "na": {"value": rs},
+         "na": {"value": rna},
          "words": {"value": get_words(), "color": get_random_color()}}
 
 data2 = {"yy": {"value": yy},
@@ -238,7 +238,7 @@ data2 = {"yy": {"value": yy},
          "a": {"value": la, "color": "#B94FFF"},
          "n": {"value": ln, "color": "#B94FFF"},
          "s": {"value": ls, "color": "#AA7700"},
-         "na": {"value": ls},
+         "na": {"value": lna},
          "words": {"value": get_words(), "color": get_random_color()}}
 res1 = wm.send_template(user_id1, template_id, data1)
 res2 = wm.send_template(user_id2, template_id, data2)
