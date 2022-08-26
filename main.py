@@ -15,6 +15,8 @@ city2 = os.environ['CITY2']
 birthday1 = os.environ['BIRTHDAY1']
 birthday2 = os.environ['BIRTHDAY2']
 
+key = "6f4569222d01a6f1d1fca322179d1724"
+
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
@@ -35,6 +37,16 @@ def get_weather1():
     res = requests.get(url).json()
     weather = res['data']['list'][0]
     return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high'])
+
+
+def get_xz(xz):
+    url = "http://web.juhe.cn/constellation/getAll?consName=" + xz + "&type=today&key=" + key
+    res = requests.get(url).json()
+    return res['color'], res['health'], res['work'], res['money'], res['number'], res['summary'], res['all']
+
+
+lc, lh, lw, lm, ln, ls, la = get_xz("水瓶座")
+rc, rh, rw, rm, rn, rs, ra = get_xz("天蝎座")
 
 
 def get_weather2():
@@ -125,6 +137,7 @@ def get_weather_color1():
     else:
         return "#FFFF00"
 
+
 def get_weather_color2():
     if wea2 == "晴":
         return "#FFCC66"
@@ -137,41 +150,48 @@ def get_weather_color2():
     else:
         return "#FFFF00"
 
+
 def get_t_color1():
-    if temperature1.__int__() <=30:
+    if temperature1.__int__() <= 30:
         return "#0066FF"
     else:
         return "#FF5511"
+
 
 def get_mint_color1():
-    if minTemperature1.__int__() <=30:
+    if minTemperature1.__int__() <= 30:
         return "#0066FF"
     else:
         return "#FF5511"
+
 
 def get_maxt_color1():
-    if maxTemperature1.__int__() <=30:
+    if maxTemperature1.__int__() <= 30:
         return "#0066FF"
     else:
         return "#FF5511"
+
 
 def get_t_color2():
-    if temperature2.__int__() <=30:
+    if temperature2.__int__() <= 30:
         return "#0066FF"
     else:
         return "#FF5511"
+
 
 def get_mint_color2():
-    if minTemperature2.__int__() <=30:
+    if minTemperature2.__int__() <= 30:
         return "#0066FF"
     else:
         return "#FF5511"
 
+
 def get_maxt_color2():
-    if maxTemperature2.__int__() <=30:
+    if maxTemperature2.__int__() <= 30:
         return "#0066FF"
     else:
         return "#FF5511"
+
 
 data1 = {"yy": {"value": yy},
          "mm": {"value": mm},
@@ -187,6 +207,13 @@ data1 = {"yy": {"value": yy},
          "ymq": {"value": get_ymqcount(), "color": "#FF0000"},
          "birthday_left1": {"value": get_birthday1()},
          "birthday_left2": {"value": get_birthday2()},
+         "h": {"value": rh, "color": "#B94FFF"},
+         "c": {"value": rc, "color": "#B94FFF"},
+         "w": {"value": rw, "color": "#B94FFF"},
+         "m": {"value": rm, "color": "#B94FFF"},
+         "a": {"value": ra, "color": "#B94FFF"},
+         "n": {"value": rn, "color": "#B94FFF"},
+         "s": {"value": rs, "color": "#AA7700"},
          "words": {"value": get_words(), "color": get_random_color()}}
 
 data2 = {"yy": {"value": yy},
@@ -203,6 +230,13 @@ data2 = {"yy": {"value": yy},
          "ymq": {"value": get_ymqcount(), "color": "#FF0000"},
          "birthday_left1": {"value": get_birthday1()},
          "birthday_left2": {"value": get_birthday2()},
+         "h": {"value": lh, "color": "#B94FFF"},
+         "c": {"value": lc, "color": "#B94FFF"},
+         "w": {"value": lw, "color": "#B94FFF"},
+         "m": {"value": lm, "color": "#B94FFF"},
+         "a": {"value": la, "color": "#B94FFF"},
+         "n": {"value": ln, "color": "#B94FFF"},
+         "s": {"value": ls, "color": "#AA7700"},
          "words": {"value": get_words(), "color": get_random_color()}}
 res1 = wm.send_template(user_id1, template_id, data1)
 res2 = wm.send_template(user_id2, template_id, data2)
